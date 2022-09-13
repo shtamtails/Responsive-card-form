@@ -1,24 +1,115 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { CardBack } from "./components/Business/CardBack/CardBack";
+import { CardFront } from "./components/Business/CardFront/CardFront";
+import { Button } from "./components/Button/Button";
+import { Input } from "./components/Input/Input";
+import { useForm } from "./hooks/useForm";
+
+// TODO
+/*
+ * MASK FOR CARD NUMBER
+ */
 
 function App() {
+  const form = useForm({
+    initialValues: { name: "", cardNumber: "", expMonth: "", expYear: "", cvc: "" },
+    validate: {
+      name: (value: string) => {
+        return value.length < 3
+          ? "Name is too short"
+          : !/^[a-zA-Z ]+$/.test(value)
+          ? "Cardholder name can contain only letters and spaces"
+          : undefined;
+      },
+      cardNumber: (value: string) => {
+        return value.length < 16
+          ? "Card number is too short"
+          : value.length > 16
+          ? "Card number is too long"
+          : !/^[0-9 ]+$/.test(value)
+          ? "Card number can contain only digits"
+          : undefined;
+      },
+      expMonth: (value: string) => {
+        return value.length < 2
+          ? "Expiration month is too short"
+          : value.length > 2
+          ? "Expiration month is too long"
+          : !/^[0-9 ]+$/.test(value)
+          ? "Expiration month can contain only digits"
+          : undefined;
+      },
+      expYear: (value: string) => {
+        return value.length < 2
+          ? "Expiration year is too short"
+          : value.length > 2
+          ? "Expiration year is too long"
+          : !/^[0-9 ]+$/.test(value)
+          ? "Expiration year can contain only digits"
+          : undefined;
+      },
+
+      cvc: (value: string) => {
+        return value.length < 3
+          ? "CVC is too short"
+          : value.length > 3
+          ? "CVC is too long"
+          : !/^[0-9 ]+$/.test(value)
+          ? "CVC can contain only digits"
+          : undefined;
+      },
+    },
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className="form-left">
+        <div className="card-container">
+          <CardBack cvc={form.getInputProps("cvc").value} />
+          <CardFront
+            number={form.getInputProps("cardNumber").value}
+            name={form.getInputProps("name").value}
+            expMonth={form.getInputProps("expMonth").value}
+            expYear={form.getInputProps("expYear").value}
+          />
+        </div>
+      </div>
+      <div className="form-right">
+        <div className="card-input-container">
+          <form onSubmit={form.onSumbit}>
+            <Input
+              fullWidth
+              my={26}
+              label="cardholder name"
+              placeholder="e.g. Jane Appleseed"
+              {...form.getInputProps("name")}
+            />
+            <Input
+              maxLength={19}
+              fullWidth
+              my={26}
+              label="card number"
+              placeholder="e.g. 1234 5678 9123 0000"
+              {...form.getInputProps("cardNumber")}
+            />
+            <div className="card-info flex">
+              <div className="card-date">
+                <div className="input-label">exp. date (mm/yy)</div>
+                <div className="flex">
+                  <Input width={80} pr={4} placeholder="MM" {...form.getInputProps("expMonth")} />
+                  <Input width={80} pl={4} placeholder="YY" {...form.getInputProps("expYear")} />
+                </div>
+              </div>
+              <div className="card-cvc">
+                <Input fullWidth label="CVC" placeholder="e.g. 123" {...form.getInputProps("cvc")} />
+              </div>
+            </div>
+            <Button fullWidth pt={35} height={50}>
+              Confirm
+            </Button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,11 +1,13 @@
 interface CardFrontProps {
-  name: string;
-  number: string;
-  expMonth: string;
-  expYear: string;
+  cc: {
+    name: string;
+    cardNumber: string;
+    expMonth: string;
+    expYear: string;
+  };
 }
 
-export const CardFront: React.FC<CardFrontProps> = ({ name, number, expMonth, expYear }) => {
+export const CardFront: React.FC<CardFrontProps> = ({ cc }) => {
   return (
     <div className="card-front">
       <div className="card-front-header">
@@ -18,11 +20,11 @@ export const CardFront: React.FC<CardFrontProps> = ({ name, number, expMonth, ex
         </svg>
       </div>
       <div className="card-front-body">
-        {number || "1234 5678 9123 0000"}
+        {cc.cardNumber || "1234 5678 9123 0000"}
         <div className="card-front-footer">
-          <div className="card-front-footer-name">{name || "John Doe"}</div>
+          <div className="card-front-footer-name">{cc.name || "John Doe"}</div>
           <div className="card-front-footer-exp">
-            {expMonth || "00"}/{expYear || "00"}
+            {cc.expMonth || "00"}/{cc.expYear || "00"}
           </div>
         </div>
       </div>

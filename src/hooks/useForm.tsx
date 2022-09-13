@@ -9,17 +9,24 @@ interface useFormProps {
   };
 }
 
+interface IErrors {
+  [key: string]: string | undefined;
+}
+
 export const useForm = ({ initialValues, validate }: useFormProps) => {
   const [values, setValues] = useState<{ [key: string]: string }>(initialValues);
   const [errors, setErrors] = useState<{ [key: string]: string | undefined }>({});
   const onSumbit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    Object.keys(validate).forEach((key) => {
+
+    const errors = Object.keys(validate).reduce<IErrors>((acc, key) => {
       const error = validate[key](values[key]);
       if (error) {
-        setErrors({ ...errors, [key]: error });
+        acc[key] = error;
       }
-    });
+      return acc;
+    }, {});
+    setErrors(errors);
   };
 
   const getInputProps = (key: string) => {

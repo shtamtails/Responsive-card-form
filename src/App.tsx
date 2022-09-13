@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { CardBack } from "./components/Business/CardBack/CardBack";
 import { CardFront } from "./components/Business/CardFront/CardFront";
 import { Button } from "./components/Button/Button";
@@ -11,6 +10,7 @@ import { useForm } from "./hooks/useForm";
  */
 
 function App() {
+  const currentYear = new Date().getFullYear().toString().slice(-2);
   const form = useForm({
     initialValues: { name: "", cardNumber: "", expMonth: "", expYear: "", cvc: "" },
     validate: {
@@ -46,6 +46,8 @@ function App() {
           ? "Expiration year is too long"
           : !/^[0-9 ]+$/.test(value)
           ? "Expiration year can contain only digits"
+          : +value < +currentYear
+          ? "Expiration year can't be less than current year"
           : undefined;
       },
 
@@ -61,17 +63,19 @@ function App() {
     },
   });
 
+  const cc = {
+    name: form.getInputProps("name").value,
+    cardNumber: form.getInputProps("cardNumber").value,
+    expMonth: form.getInputProps("expMonth").value,
+    expYear: form.getInputProps("expYear").value,
+  };
+
   return (
     <div className="container">
       <div className="form-left">
         <div className="card-container">
           <CardBack cvc={form.getInputProps("cvc").value} />
-          <CardFront
-            number={form.getInputProps("cardNumber").value}
-            name={form.getInputProps("name").value}
-            expMonth={form.getInputProps("expMonth").value}
-            expYear={form.getInputProps("expYear").value}
-          />
+          <CardFront cc={cc} />
         </div>
       </div>
       <div className="form-right">
@@ -96,12 +100,12 @@ function App() {
               <div className="card-date">
                 <div className="input-label">exp. date (mm/yy)</div>
                 <div className="flex">
-                  <Input width={80} pr={4} placeholder="MM" {...form.getInputProps("expMonth")} />
-                  <Input width={80} pl={4} placeholder="YY" {...form.getInputProps("expYear")} />
+                  <Input width={80} pr={4} placeholder="MM" {...form.getInputProps("expMonth")} maxLength={2} />
+                  <Input width={80} pl={4} placeholder="YY" {...form.getInputProps("expYear")} maxLength={2} />
                 </div>
               </div>
               <div className="card-cvc">
-                <Input fullWidth label="CVC" placeholder="e.g. 123" {...form.getInputProps("cvc")} />
+                <Input maxLength={3} fullWidth label="CVC" placeholder="e.g. 123" {...form.getInputProps("cvc")} />
               </div>
             </div>
             <Button fullWidth pt={35} height={50}>

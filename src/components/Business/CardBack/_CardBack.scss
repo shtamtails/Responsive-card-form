@@ -1,0 +1,17 @@
+.card-back {
+  position: absolute;
+  background-color: #fff;
+  // right: -250px;
+  right: -10vw;
+  top: 480px;
+  width: 450px;
+  height: 250px;
+  background: url("../../../img/bg-card-back.png") no-repeat center;
+  background-size: cover;
+  border-radius: 12px;
+  display: flex;
+  justify-content: end;
+  padding: 112px 55px;
+  color: white;
+  font-family: "Space Grotesk";
+}

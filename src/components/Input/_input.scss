@@ -1,0 +1,44 @@
+@import "../../_variables.scss";
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  input {
+    width: 300px;
+    height: 40px;
+    border-radius: 6px;
+    border: 1px solid $neutral-light-violet;
+    font-size: 16px;
+    padding-left: $p-small;
+    &::placeholder {
+      color: $neutral-light-violet;
+    }
+    &:focus {
+      outline-style: solid;
+      outline-color: linear-gradient(to right, $primary-gradient-1, $primary-gradient-2);
+    }
+  }
+  .input-error {
+    border: 1px solid $primary-red !important;
+  }
+  .input-error-text {
+    color: $primary-red !important;
+    font-family: "Space Grotesk";
+    padding-top: $p-xsmall;
+    font-size: 12px;
+  }
+}
+.input-label {
+  font-family: "Space Grotesk";
+  font-weight: 500;
+  font-size: 18px;
+  color: $neutral-very-dark-violet;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 1.7px;
+  text-transform: uppercase;
+  padding-bottom: 4px;
+}
+.fullwidth {
+  width: 100% !important;
+}

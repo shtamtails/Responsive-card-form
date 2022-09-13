@@ -1,0 +1,14 @@
+@import "../../_variables.scss";
+
+.button-container {
+  button {
+    cursor: pointer;
+    border-radius: 6px;
+    height: 40px;
+    width: 100px;
+    background-color: $neutral-very-dark-violet;
+    color: $neutral-white;
+    font-family: "Space Grotesk";
+    font-size: 16px;
+  }
+}

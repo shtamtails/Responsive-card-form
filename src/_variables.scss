@@ -1,0 +1,30 @@
+$primary-gradient-1: hsl(249, 99%, 64%);
+$primary-gradient-2: hsl(278, 94%, 30%);
+$primary-red: hsl(0, 100%, 66%);
+
+$neutral-white: hsl(0, 0%, 100%);
+$neutral-light-violet: hsl(270, 3%, 87%);
+$neutral-dark-violet: hsl(279, 6%, 55%);
+$neutral-very-dark-violet: hsl(278, 68%, 11%);
+
+$p-xsmall: 10px;
+$p-small: 12px;
+$p-medium: 16px;
+$p-large: 20px;
+$p-xlarge: 24px;
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-between {
+  align-items: space-between;
+}

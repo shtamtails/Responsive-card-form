@@ -1,0 +1,37 @@
+.card-front {
+  position: absolute;
+  // right: -130px;
+  right: -6vw;
+  top: 200px;
+  width: 450px;
+  height: 250px;
+  background: url("../../../img/bg-card-front.png") no-repeat center;
+  background-size: cover;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+  .card-front-header {
+  }
+  .card-front-body {
+    font-family: "Space Grotesk";
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 31px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    .card-front-footer {
+      padding-top: 36px;
+      font-family: "Space Grotesk";
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      .card-front-footer-name {
+      }
+      .card-front-footer-exp {
+      }
+    }
+  }
+}

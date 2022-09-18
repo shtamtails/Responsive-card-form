@@ -71,7 +71,11 @@ function App() {
 
   const cc = {
     name: form.getInputProps("name").value,
-    cardNumber: form.getInputProps("cardNumber").value,
+    cardNumber: form
+      .getInputProps("cardNumber")
+      .value.replace(/[^\dA-Z]/g, "")
+      .replace(/(.{4})/g, "$1 ")
+      .trim(),
     expMonth: form.getInputProps("expMonth").value,
     expYear: form.getInputProps("expYear").value,
   };

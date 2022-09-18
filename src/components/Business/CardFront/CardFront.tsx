@@ -1,6 +1,6 @@
 const bgImg = require("../../../img/bg-card-front.png");
 const bgLogo = require("../../../img/card-logo.svg");
-console.log(bgLogo);
+console.log(bgLogo.default);
 
 interface CardFrontProps {
   cc: {
@@ -17,7 +17,7 @@ export const CardFront: React.FC<CardFrontProps> = ({ cc }) => {
       <img className="card-front-bg" src={bgImg} alt="card-front" />
       <div className="card-content">
         <div className="card-front-header">
-          <img src="/static/media/card-logo.8ca9036515954c3f8191559dce9c7bdf.svg" alt="" />
+          <img src={bgLogo.default} alt="" />
           {/* <svg fill="none" xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="23.478" cy="23.5" rx="23.478" ry="23.5" fill="#fff" />
             <path

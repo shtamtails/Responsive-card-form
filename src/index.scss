@@ -1,8 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap");
 @import url("./components/Input/_input.scss");
 @import url("./components/Button/_button.scss");
 @import url("./components/Business/CardFront/_CardFront.scss");
 @import url("./components/Business/CardBack/_CardBack.scss");
+@import url("./components/Business/CardAccepted/_CardAccepted.scss");
+@import url("./_variables.scss");
 
 body {
   margin: 0;
@@ -31,7 +33,6 @@ html {
 }
 
 .form-left {
-  position: relative;
   background-image: url("./img/bg-main-desktop.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -65,26 +66,43 @@ html {
 .card-cvc {
   width: 50%;
 }
-
-@media (max-width: 1150px) {
-  .card-back {
-    left: 0;
-    margin-left: 60px;
-  }
-  .card-front {
-    left: 0;
-    margin-left: 20px;
-  }
+.card-container {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1124px) {
+  .card-input-container {
+    margin-top: 130px;
+  }
+  .card-container {
+    position: relative;
+    width: 90%;
+    height: auto;
+    .card-back {
+      margin: 0;
+      margin-top: 20px;
+      margin-left: 50px;
+    }
+    .card-front {
+      position: absolute;
+      top: 60%;
+      margin-right: 50px;
+      z-index: 2;
+    }
+  }
   .container {
     display: flex;
     flex-direction: column;
   }
   .form-left {
     width: 100%;
-    height: 240px;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -93,32 +111,18 @@ html {
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    .card-container {
-      .card-front {
-        top: 40px;
-        left: 0;
-        position: relative;
-      }
-      .card-back {
-        top: 150px;
-        left: 0;
-        margin-left: 60px;
-        position: relative;
-      }
-      @media (max-width: 550px) {
-        width: 95%;
-      }
-    }
   }
 
   .form-right {
     width: 100%;
-    margin-top: 170px;
     padding: 0;
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 520px) {
+  .card-input-container {
+    margin-top: 23vw;
+  }
   .card-input-container {
     width: 90%;
   }

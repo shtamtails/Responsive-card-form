@@ -13,12 +13,14 @@ interface IErrors {
   [key: string]: string | undefined;
 }
 
+export type values = { [key: string]: string };
+
 export const useForm = ({ initialValues, validate }: useFormProps) => {
   const [values, setValues] = useState<{ [key: string]: string }>(initialValues);
   const [errors, setErrors] = useState<{ [key: string]: string | undefined }>({});
-  const onSumbit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
 
+  const onSumbit = (e: React.FormEvent<HTMLFormElement>, callback?: (values?: values, errors?: IErrors) => void) => {
+    e.preventDefault();
     const errors = Object.keys(validate).reduce<IErrors>((acc, key) => {
       const error = validate[key](values[key]);
       if (error) {
@@ -27,6 +29,9 @@ export const useForm = ({ initialValues, validate }: useFormProps) => {
       return acc;
     }, {});
     setErrors(errors);
+    if (Object.keys(errors).length === 0) {
+      callback && callback(values, errors);
+    }
   };
 
   const getInputProps = (key: string) => {

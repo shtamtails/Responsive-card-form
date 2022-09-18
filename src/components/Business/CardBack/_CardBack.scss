@@ -1,17 +1,49 @@
 .card-back {
-  position: absolute;
-  background-color: #fff;
-  // right: -250px;
-  right: -10vw;
-  top: 480px;
-  width: 450px;
-  height: 250px;
-  background: url("../../../img/bg-card-back.png") no-repeat center;
-  background-size: cover;
-  border-radius: 12px;
-  display: flex;
-  justify-content: end;
-  padding: 112px 55px;
-  color: white;
-  font-family: "Space Grotesk";
+  margin-left: 100px;
+  margin-top: 20px;
+  position: relative;
+  max-width: 450px;
+  height: auto;
+  img {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+  }
+  .card-content {
+    position: absolute;
+    color: white;
+    top: 42%;
+    right: 12%;
+    z-index: 2;
+    font-family: "Space Grotesk";
+    display: flex;
+    color: white;
+
+    // width: 100%;
+    // height: 100%;
+  }
+  @media (min-width: 1124px) and (max-width: 1920px) {
+    .card-content {
+      top: 43%;
+      font-size: 1.3vw;
+    }
+  }
+  @media (max-width: 1350px) {
+    .card-content {
+      top: 44%;
+    }
+  }
+
+  @media (max-width: 450px) {
+    .card-content {
+      top: 43%;
+      font-size: 3.6vw;
+    }
+  }
+  @media (min-width: 1920px) {
+    .card-content {
+      font-size: 25px;
+    }
+  }
 }

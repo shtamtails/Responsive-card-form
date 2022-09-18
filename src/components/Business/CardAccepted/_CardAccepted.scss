@@ -1,0 +1,53 @@
+@import "../../../_variables.scss";
+@keyframes scaleFromZeroToNormal {
+  0% {
+    transform: scale(0.1);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.card-accepted {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Space Grotesk";
+  .accepted-logo {
+    margin-bottom: 30px;
+
+    svg {
+      animation: scaleFromZeroToNormal 0.5s ease-in-out;
+      path {
+        transform-origin: 50% 50%;
+        stroke-dasharray: 48;
+        stroke-dashoffset: 48;
+        animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.4s forwards;
+      }
+    }
+  }
+  .card-accepted-text {
+    font-weight: 500;
+    letter-spacing: 2px;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: $neutral-very-dark-violet;
+  }
+  .card-accepted-details {
+    margin-bottom: 50px;
+    color: $neutral-dark-violet;
+  }
+  .card-accepted-button {
+    width: 100%;
+  }
+}
